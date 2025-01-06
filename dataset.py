@@ -50,20 +50,3 @@ class BrainImageSegmentationDataset(Dataset):
         #Apply transform
 
         return image, mask
-    
-brain_dataset = BrainImageSegmentationDataset()
-
-# Split into train and test sets
-train_size = int(0.8 * len(brain_dataset))
-test_size = len(brain_dataset) - train_size
-train_dataset, test_dataset = torch.utils.data.random_split(brain_dataset, [train_size, test_size])
-
-# Create dataloaders
-train_loader = DataLoader(train_dataset, batch_size=16, shuffle=True)
-test_loader = DataLoader(test_dataset, batch_size=16, shuffle=False)
-
-'''for batch_idx, (images, masks) in enumerate(train_loader):
-    print(f"Batch {batch_idx + 1}:")
-    print(f"Images shape: {images.shape} (Batch x Channels x Height x Width)")
-    print(f"Masks shape: {masks.shape} (Batch x Channels x Height x Width)")
-    break'''
